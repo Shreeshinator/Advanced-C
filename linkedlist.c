@@ -3,34 +3,34 @@
 #include <stdlib.h>
 
 typedef struct Node {
-    int data;
-    struct Node* next;
+    int data; // Stores the data of the node
+    struct Node* next; // Also stores the pointer to the next node in the linked list
 } Node;
 
 Node* create_node(int data) {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    if (new_node == NULL) {
-        return NULL;
+    Node* new_node = (Node*)malloc(sizeof(Node)); // Allocate memory for a new node
+    if (new_node == NULL) { // Check if memory allocation was successful
+        return NULL; // Return NULL if memory allocation failed
     }
-    new_node->data = data;
-    new_node->next = NULL;
-    return new_node;
+    new_node->data = data; // Initialize the data of the new node
+    new_node->next = NULL; // Initialize the next pointer of the new node to NULL
+    return new_node; // Return the pointer to the newly created node
 }
 
-void append(Node** head_ref, int new_data) {
-    Node* new_node = create_node(new_data);
-    if (new_node == NULL) {
-        return;
+void append(Node** head_ref, int new_data) { // Takes a pointer to the head pointer and the new data to be added
+    Node* new_node = create_node(new_data); // Create a new node with the given data
+    if (new_node == NULL) { // Check if memory allocation was successful
+        return; // Return if memory allocation failed
     }
-    if (*head_ref == NULL) {
-        *head_ref = new_node;
-        return;
+    if (*head_ref == NULL) { // If the linked list is empty, make the new node the head
+        *head_ref = new_node; // Set the head pointer to point to the new node
+        return; // Return after adding the new node as the head
     }
-    Node* last = *head_ref;
-    while (last->next != NULL) {
+    Node* last = *head_ref; // Start from the head of the list
+    while (last->next != NULL) {// Traverse to the end of the list
         last = last->next;
     }
-    last->next = new_node;
+    last->next = new_node; // Link the new node at the end of the list, when last->next is NULL, it means we are at the last node, so we set its next pointer to the new node
 }
 
 void print_list(Node* node) {
