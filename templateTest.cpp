@@ -2,7 +2,6 @@
 #include <string>
 
 template<int N, typename T>
-
 class Array
 {
 private:
